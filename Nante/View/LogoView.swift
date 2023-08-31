@@ -12,7 +12,7 @@ struct LogoView: View {
 
     var body: some View {
         ZStack {
-            Color.white
+            Color("BaseColor")
                 .edgesIgnoringSafeArea(.all)
             
             Image("Logo")
