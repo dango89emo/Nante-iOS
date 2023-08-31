@@ -15,10 +15,10 @@ struct LogoView: View {
             Color.white
                 .edgesIgnoringSafeArea(.all)
             
-            Image(systemName: "mic.fill")
+            Image("Logo")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 100, height: 100)
+                .frame(width: 236, height: 72)
                 .opacity(logoOpacity)
                 .onAppear {
                     withAnimation(.easeOut(duration: 1.0)) {
