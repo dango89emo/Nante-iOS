@@ -17,8 +17,6 @@
 		334D842A2A9A698E0001F5B0 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D84292A9A698E0001F5B0 /* Navigation.swift */; };
 		334D842C2A9A6E870001F5B0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D842B2A9A6E870001F5B0 /* AppState.swift */; };
 		334D842E2A9A6F540001F5B0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D842D2A9A6F540001F5B0 /* MainView.swift */; };
-		334D84302A9B9E220001F5B0 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D842F2A9B9E220001F5B0 /* AudioPlayer.swift */; };
-		334D84342A9BA63A0001F5B0 /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D84332A9BA63A0001F5B0 /* AudioPlayerView.swift */; };
 		334D84362A9BA6990001F5B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D84352A9BA6990001F5B0 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +52,6 @@
 		334D84292A9A698E0001F5B0 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		334D842B2A9A6E870001F5B0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		334D842D2A9A6F540001F5B0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		334D842F2A9B9E220001F5B0 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		334D84332A9BA63A0001F5B0 /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		334D84352A9BA6990001F5B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,8 +111,6 @@
 				334D84022A9A588C0001F5B0 /* Nante.entitlements */,
 				334D84032A9A588C0001F5B0 /* Preview Content */,
 				334D842B2A9A6E870001F5B0 /* AppState.swift */,
-				334D842F2A9B9E220001F5B0 /* AudioPlayer.swift */,
-				334D84332A9BA63A0001F5B0 /* AudioPlayerView.swift */,
 				334D84352A9BA6990001F5B0 /* ContentView.swift */,
 			);
 			path = Nante;
@@ -279,8 +273,6 @@
 			files = (
 				334D842E2A9A6F540001F5B0 /* MainView.swift in Sources */,
 				334D842C2A9A6E870001F5B0 /* AppState.swift in Sources */,
-				334D84342A9BA63A0001F5B0 /* AudioPlayerView.swift in Sources */,
-				334D84302A9B9E220001F5B0 /* AudioPlayer.swift in Sources */,
 				334D84362A9BA6990001F5B0 /* ContentView.swift in Sources */,
 				334D84282A9A68FF0001F5B0 /* Logo.swift in Sources */,
 				334D83FD2A9A588B0001F5B0 /* NanteApp.swift in Sources */,
