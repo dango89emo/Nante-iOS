@@ -12,8 +12,7 @@ struct MainView: View {
     var body: some View {
         Group {
             if appState.hasShownLogo {
-                //NavigationView()
-                ContentView()
+                NavigationView()
             } else {
                 LogoView()
             }
