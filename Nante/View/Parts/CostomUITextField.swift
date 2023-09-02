@@ -8,13 +8,10 @@
 import UIKit
 
 class CustomUITextField: UITextField {
-    
     override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        // Example: Disable copy and paste actions
-        if action == #selector(copy(_:)) || action == #selector(paste(_:)) {
-            return false
+        if action == #selector(paste(_:)) {
+          return true
         }
-        
-        return super.canPerformAction(action, withSender: sender)
+        return false
     }
 }

@@ -43,19 +43,21 @@ struct NavigationView: View {
                                     }
                                     
                                 }
-                                Spacer()
+                                // Spacer()
                             }
                             //CustomTextField("Enter URL here...", text: $urlText.value)
-                            CustomTextField(text: $urlText.value)
+                            CustomTextField(placeholder:"Enter URL here...", text: $urlText.value)
                                 .padding()
                                 .textContentType(.none)
                                 .padding(.leading, 50)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 10)
                                         .stroke(Color.gray, lineWidth: 1)
+                                        .frame(height:52)
                                 )
                         }
                         .padding(.bottom, 20)
+                        .frame(height:52)
                         
                         Button("Import") {
                             // ここにImportボタンをクリックした時の処理を書く

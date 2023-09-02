@@ -20,6 +20,8 @@
 		33CD3CB02AA132B100646670 /* ProgressIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CAF2AA132B100646670 /* ProgressIcon.swift */; };
 		33CD3CB42AA1384100646670 /* Transcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB32AA1384100646670 /* Transcription.swift */; };
 		33CD3CB62AA1659C00646670 /* ResourceURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB52AA1659C00646670 /* ResourceURL.swift */; };
+		33CD3CB82AA3672600646670 /* NewTranscriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB72AA3672600646670 /* NewTranscriptionViewModel.swift */; };
+		33CD3CBA2AA3678100646670 /* AudioMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB92AA3678100646670 /* AudioMetaData.swift */; };
 		A3755F9B2AA0CEE50047D8B3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3755F9A2AA0CEE50047D8B3 /* ContentView.swift */; };
 		A3755F9D2AA0CF620047D8B3 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3755F9C2AA0CF620047D8B3 /* SearchView.swift */; };
 		A3755F9F2AA0CFC40047D8B3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3755F9E2AA0CFC40047D8B3 /* SettingsView.swift */; };
@@ -62,6 +64,8 @@
 		33CD3CAF2AA132B100646670 /* ProgressIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIcon.swift; sourceTree = "<group>"; };
 		33CD3CB32AA1384100646670 /* Transcription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcription.swift; sourceTree = "<group>"; };
 		33CD3CB52AA1659C00646670 /* ResourceURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceURL.swift; sourceTree = "<group>"; };
+		33CD3CB72AA3672600646670 /* NewTranscriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTranscriptionViewModel.swift; sourceTree = "<group>"; };
+		33CD3CB92AA3678100646670 /* AudioMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMetaData.swift; sourceTree = "<group>"; };
 		A3755F9A2AA0CEE50047D8B3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A3755F9C2AA0CF620047D8B3 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		A3755F9E2AA0CFC40047D8B3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 			children = (
 				33CD3CB32AA1384100646670 /* Transcription.swift */,
 				33CD3CB52AA1659C00646670 /* ResourceURL.swift */,
+				33CD3CB92AA3678100646670 /* AudioMetaData.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				334D842B2A9A6E870001F5B0 /* AppState.swift */,
+				33CD3CB72AA3672600646670 /* NewTranscriptionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -330,12 +336,14 @@
 				A3A1EF6A2AA31EC00075EAA9 /* CostomUITextField.swift in Sources */,
 				33CD3CB62AA1659C00646670 /* ResourceURL.swift in Sources */,
 				33CD3CB02AA132B100646670 /* ProgressIcon.swift in Sources */,
+				33CD3CBA2AA3678100646670 /* AudioMetaData.swift in Sources */,
 				A3755F9B2AA0CEE50047D8B3 /* ContentView.swift in Sources */,
 				A3755F9D2AA0CF620047D8B3 /* SearchView.swift in Sources */,
 				33CD3CB42AA1384100646670 /* Transcription.swift in Sources */,
 				334D84282A9A68FF0001F5B0 /* LogoView.swift in Sources */,
 				334D83FD2A9A588B0001F5B0 /* NanteApp.swift in Sources */,
 				334D842A2A9A698E0001F5B0 /* NavigationView.swift in Sources */,
+				33CD3CB82AA3672600646670 /* NewTranscriptionViewModel.swift in Sources */,
 				A3A1EF682AA312CC0075EAA9 /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

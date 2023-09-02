@@ -10,7 +10,7 @@ import SwiftUI
 
 
 struct CustomTextField: UIViewRepresentable {
-
+    var placeholder: String = "" 
     @Binding var text: String
 
     func makeUIView(context: Context) -> CustomUITextField {
@@ -21,6 +21,7 @@ struct CustomTextField: UIViewRepresentable {
 
     func updateUIView(_ uiView: CustomUITextField, context: Context) {
         uiView.text = text
+        uiView.textField.placeholder = placeholder 
     }
 
     func makeCoordinator() -> Coordinator {

@@ -22,4 +22,3 @@ struct NanteApp: App {
     }
 }
 
-
