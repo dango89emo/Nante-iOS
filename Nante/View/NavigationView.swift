@@ -45,7 +45,8 @@ struct NavigationView: View {
                                 }
                                 Spacer()
                             }
-                            TextField("Enter URL here...", text: $urlText.value)
+                            //CustomTextField("Enter URL here...", text: $urlText.value)
+                            CustomTextField(text: $urlText.value)
                                 .padding()
                                 .textContentType(.none)
                                 .padding(.leading, 50)
@@ -165,5 +166,11 @@ extension UICollectionReusableView {
     override open var backgroundColor: UIColor? {
         get { .clear }
         set { }
+    }
+}
+
+struct NavigationView_Previews: PreviewProvider {
+    static var previews: some View {
+        NavigationView()
     }
 }
