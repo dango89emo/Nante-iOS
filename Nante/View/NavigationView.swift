@@ -5,84 +5,165 @@
 //  Created by 谷内洋介 on 2023/08/27.
 //
 import SwiftUI
-
-
-struct Ocean: Identifiable, Hashable {
-    let name: String
-    let id = UUID()
-}
-
-
-private var oceans = [
-    Ocean(name: "Pacific"),
-    Ocean(name: "Atlantic"),
-    Ocean(name: "Indian"),
-    Ocean(name: "Southern"),
-    Ocean(name: "Arctic")
-]
-
+import Foundation
 
 struct NavigationView: View {
     @State private var singleSelection = Set<UUID>()
-    init(){
-        UITableView.appearance().backgroundColor = UIColor(Color("BaseColor"))
-    }
-
+    @State var selectionIndex: Int? =  nil
+    @State private var isNewSpeech: Bool = false
+    @ObservedObject var urlText = ResourceURLModel()
+    @ObservedObject var transcriptionList = TranscriptionList()
+    
     var body: some View {
         GeometryReader { geometry in
-            let statusBarHeight = geometry.safeAreaInsets.top
 
             ZStack {
-                Color("NavigationBackgroundColor")
-                    .edgesIgnoringSafeArea(.all)
-
-                HStack{
-
-                    Spacer()
-
-                    // Navigation Panel
-                    VStack {
-                        Button(action: {}) {
-                            HStack {
-                                Image("NewSpeech")
-                                    .resizable()
-                                    .frame(width: 20, height: 20)
-                                Text("New Speech")
+                if isNewSpeech {
+                    // New Speach View
+                    Color("BaseColor")
+                    VStack(spacing: 0) {
+                        ZStack {
+                            HStack{
+                                ZStack{
+                                    HStack{
+                                        Color.accentColor
+                                            .frame(width: 36, height: 52)
+                                            .padding()
+                                        Spacer()
+                                    }
+                                    HStack{
+                                        Image(systemName: "link")
+                                            .resizable()
+                                            .frame(width: 20, height: 20)
+                                            .padding()
+                                            .background(Color.accentColor)
+                                            .foregroundColor(.white)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                                        Spacer()
+                                    }
                                     
+                                }
+                                Spacer()
                             }
-                            .frame(width: geometry.size.width * 0.78, height: 30)
-                            .background(
-                                Color("FocusColor")
-                            )
+                            TextField("Enter URL here...", text: $urlText.value)
+                                .padding()
+                                .textContentType(.none)
+                                .padding(.leading, 50)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.gray, lineWidth: 1)
+                                )
                         }
-                        .padding()
-
-                        Text("HISTORY")
-                            .foregroundColor(Color("BaseTextColor"))
-                            .font(.headline)
-                            .padding(.top)
-
-                        List (oceans, selection: $singleSelection) { ocean in
-                            HStack {
-                                Text(ocean.name)
-                                    .listRowBackground(Color("BaseColor"))
-                            }
+                        .padding(.bottom, 20)
+                        
+                        Button("Import") {
+                            // ここにImportボタンをクリックした時の処理を書く
                         }
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 20)
+                        .background(Color.accentColor)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
                     }
-                    .background(Color.white)
-                    .frame(
-                        width: geometry.size.width * 0.78,
-                        height: geometry.size.height // - statusBarHeight
-                    )
-
-                    // Player Panel
-                    Color.white
-                        .frame(
-                            width: geometry.size.width * 0.20,
-                            height: geometry.size.height // - statusBarHeight
-                        )
+                    .padding()
+                    
+                } else {
+                    Color("NavigationBackgroundColor")
+                        .edgesIgnoringSafeArea(.all)
+                    VStack(spacing: 0){
+                        Spacer()
+                        HStack {
+                            // Navigation Panel
+                            VStack(spacing: 0) {
+                                Button(action: {isNewSpeech = true}) {
+                                    HStack {
+                                        Image("NewSpeech")
+                                            .resizable()
+                                            .frame(width: 20, height: 20)
+                                        Text("New Speech")
+                                            .foregroundColor(Color("BaseTextColor"))
+                                        
+                                    }
+                                    .frame(width: geometry.size.width * 0.663, height: 40)
+                                    .background(
+                                        Color("FocusColor")
+                                    )
+                                }
+                                .padding(.top, 40)
+                                
+                                HStack {
+                                    Text("HISTORY")
+                                        .foregroundColor(Color("BaseTextColor"))
+                                        .font(.headline)
+                                        .padding(.top, 30)
+                                        .padding(.leading, 5)
+                                        .padding(.bottom, 5)
+                                    Spacer()
+                                }
+                                
+                                List (transcriptionList.items, selection: $singleSelection) { transcription in
+                                    let index = transcriptionList.items.firstIndex(of:transcription)
+                                    let colorName = selectionIndex == index ? "FocusColor" : "BaseColor"
+                                    HStack {
+                                        Text(transcription.title)
+                                            .foregroundColor(Color("BaseTextColor"))
+                                            .fontWeight(selectionIndex == index ? .bold: .regular)
+                                            .lineLimit(1)
+                                            .truncationMode(.tail)
+                                        Spacer()
+                                        ProgressIcon(progress: transcription.progress, strokeWidth: 6)
+                                            .scaleEffect(0.5) // サイズを半分にする
+                                            .frame(width: 30, height: 30)
+                                    }
+                                    .listRowBackground(
+                                        Color(colorName)
+                                            .frame(height: 30)
+                                    )
+                                    .onTapGesture {selectionIndex = index}
+                                    
+                                }
+                                // ListStyles
+                                .listStyle(PlainListStyle())
+                                .scrollContentBackground(.hidden)
+                                .padding(.leading, 10)
+                                .background(Color.clear)
+                                .environment(\.defaultMinListRowHeight, 35)
+                            }
+                            // Navigation Panel Style
+                            .padding(.horizontal, 20)
+                            .background(Color("BaseColor"))
+                            
+                            if let unwrappedIndex = selectionIndex{
+                                // Player Panel
+                                Spacer()
+                                    .frame(width: 30)
+                                
+                                VStack{
+                                    
+                                    Text(transcriptionList.items[unwrappedIndex].content)
+                                        .padding(30)
+                                    
+                                }
+                                .frame(
+                                    width: geometry.size.width,
+                                    height: geometry.size.height
+                                )
+                                .background(Color("BaseColor"))
+                            } //else {
+                            // Voice Interface Panel
+                            // }
+                        } // HStack
+                    } // VStack
+                    .frame(height: geometry.size.height)
                 }
             }
         }
+    }
+}
+
+extension UICollectionReusableView {
+    override open var backgroundColor: UIColor? {
+        get { .clear }
+        set { }
     }
 }

@@ -12,10 +12,11 @@ struct MainView: View {
     var body: some View {
         Group {
             if appState.hasShownLogo {
-                NavigationView().preferredColorScheme(.light)
+                ContentView()
             } else {
-                ContentView() 
+                LogoView()
             }
         }
     }
 }
+

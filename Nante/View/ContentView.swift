@@ -12,6 +12,7 @@ struct ContentView: View {
         // タブバーの背景色を設定する
         let appearance = UITabBarAppearance()
         appearance.backgroundColor =  UIColor(Color("BaseColor"))
+        appearance.shadowColor = UIColor(Color("BaseColor"))
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
@@ -20,27 +21,17 @@ struct ContentView: View {
         TabView {
             NavigationView()
                 .tabItem {
-                    (Label{
-                        Text("Home")
-                        } icon: {
-                            Image("BlackAppIcon")
-                        }
-                    ).labelStyle(.iconOnly)
+                    Image("BlackAppIcon")
                 }
+            
             SearchView()
                 .tabItem {
-                    (Label{
-                        Text("Search")
-                        } icon: {
-                            Image("SearchIcon")
-                        })
-                    .labelStyle(.iconOnly)
+                    Image("SearchIcon")
                 }
             
             SettingsView()
                 .tabItem {
-                    Label("Favorites", systemImage: "star")
-                    .labelStyle(.iconOnly)
+                    Image("SearchIcon")
                 }
         }
     }

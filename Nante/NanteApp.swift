@@ -13,7 +13,11 @@ struct NanteApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView().environmentObject(appState)
+            MainView()
+                .preferredColorScheme(.light)
+                .environmentObject(appState)
+                .environment(\.colorScheme, .light)
+                .environment(\.font, Font.custom("HelveticaNeue", size: 16))
         }
     }
 }
