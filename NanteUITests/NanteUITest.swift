@@ -1,13 +1,13 @@
 //
-//  NanteUITests.swift
+//  NanteUITest.swift
 //  NanteUITests
 //
-//  Created by 谷内洋介 on 2023/08/27.
+//  Created by 谷内洋介 on 2023/09/03.
 //
 
 import XCTest
 
-final class NanteUITests: XCTestCase {
+final class NanteUITest: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
