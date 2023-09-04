@@ -15,6 +15,10 @@ struct MainView: View {
                 LogoView()
             } else if(!currentState.options.contains(.hasLoggedIn)){
                 LoginView()
+            } else if(currentState.options.contains(.isPlayer)){
+                AudioPlayerView()
+                    .environmentObject(audioList)
+                    .environmentObject(currentState)
             } else {
                 TabSelectionView()
             }

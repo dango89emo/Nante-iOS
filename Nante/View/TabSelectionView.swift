@@ -30,10 +30,6 @@ struct TabSelectionView: View {
                     NewSpeechView()
                         .environmentObject(audioList)
                         .environmentObject(currentState)
-                } else if(currentState.options.contains(.isPlayer)){
-                    AudioPlayerView()
-                        .environmentObject(audioList)
-                        .environmentObject(currentState)
                 }
             }
             .tabItem {Image("BlackAppIcon")}
