@@ -21,7 +21,7 @@ struct CustomTextField: UIViewRepresentable {
 
     func updateUIView(_ uiView: CustomUITextField, context: Context) {
         uiView.text = text
-        uiView.textField.placeholder = placeholder 
+        // uiView.textField.placeholder = placeholder: TODO: placeholderが動くように修正
     }
 
     func makeCoordinator() -> Coordinator {

@@ -7,30 +7,19 @@
 
 import Foundation
 
-class ProgressModel: ObservableObject {
-    @Published var value: Float = 0.0
+
+struct Word: Decodable {
+    let startTime: String
+    let endTime: String
+    let word: String
 }
 
-class Transcription: Identifiable, Equatable, ObservableObject {
-    var title: String
-    let id = UUID()
-    var content: String = "Southern Southern Southern Southern Southern Southern Southern Southern Southern"
-    var progress: ProgressModel
-    init(title: String){
-        self.title = title
-        self.progress = ProgressModel()
-    }
-    static func == (lhs: Transcription, rhs: Transcription) -> Bool {
-            return lhs.id == rhs.id
-        }
+struct Sentence: Decodable {
+    let transcript: String
+    let confidence: Double
+    let words: [Word]
 }
 
-class TranscriptionList: ObservableObject{
-    @Published var items = [
-        Transcription(title: "Pacific"),
-        Transcription(title: "Atlantic"),
-        Transcription(title: "Indian"),
-        Transcription(title: "Southern"),
-        Transcription(title: "Arctic")
-    ]
+struct Transcription {
+    let content : [Sentence]
 }

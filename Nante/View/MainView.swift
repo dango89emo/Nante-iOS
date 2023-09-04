@@ -7,16 +7,17 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var currentState: CurrentState
 
     var body: some View {
         Group {
-            if appState.hasShownLogo {
-                ContentView()
-            } else {
+            if (!currentState.options.contains(.hasShownLogo)) {
                 LogoView()
+            } else if(!currentState.options.contains(.hasLoggedIn)){
+                LoginView()
+            } else {
+                TabSelectionView()
             }
         }
     }
 }
-

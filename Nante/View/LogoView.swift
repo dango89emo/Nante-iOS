@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct LogoView: View {
-    @EnvironmentObject var appState: AppState
+    @EnvironmentObject var currentState: CurrentState
     @State private var logoOpacity = 1.0
 
     var body: some View {
@@ -25,7 +25,7 @@ struct LogoView: View {
                         logoOpacity = 0
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        appState.hasShownLogo = true
+                        currentState.options.insert(.hasShownLogo)
                     }
                 }
         }

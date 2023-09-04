@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct TabSelectionView: View {
     init() {
         // タブバーの背景色を設定する
         let appearance = UITabBarAppearance()
@@ -19,7 +19,7 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            NavigationView()
+            ContentsView()
                 .tabItem {
                     Image("BlackAppIcon")
                 }
