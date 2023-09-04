@@ -11,7 +11,6 @@
 		334D84012A9A588C0001F5B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334D84002A9A588C0001F5B0 /* Assets.xcassets */; };
 		334D84052A9A588C0001F5B0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 334D84042A9A588C0001F5B0 /* Preview Assets.xcassets */; };
 		334D84282A9A68FF0001F5B0 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D84272A9A68FF0001F5B0 /* LogoView.swift */; };
-		334D842A2A9A698E0001F5B0 /* ContentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D84292A9A698E0001F5B0 /* ContentsView.swift */; };
 		334D842C2A9A6E870001F5B0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D842B2A9A6E870001F5B0 /* AppState.swift */; };
 		334D842E2A9A6F540001F5B0 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 334D842D2A9A6F540001F5B0 /* MainView.swift */; };
 		3359E94D2AA3B8E6008A574A /* NetworkUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E94C2AA3B8E6008A574A /* NetworkUtils.swift */; };
@@ -87,7 +86,6 @@
 		334D840A2A9A588C0001F5B0 /* NanteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		334D84142A9A588C0001F5B0 /* NanteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NanteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		334D84272A9A68FF0001F5B0 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
-		334D84292A9A698E0001F5B0 /* ContentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsView.swift; sourceTree = "<group>"; };
 		334D842B2A9A6E870001F5B0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		334D842D2A9A6F540001F5B0 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		3359E94C2AA3B8E6008A574A /* NetworkUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkUtils.swift; sourceTree = "<group>"; };
@@ -296,7 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				33CD3CB12AA132D000646670 /* Parts */,
-				334D84292A9A698E0001F5B0 /* ContentsView.swift */,
 				334D84272A9A68FF0001F5B0 /* LogoView.swift */,
 				334D842D2A9A6F540001F5B0 /* MainView.swift */,
 				A3755F9A2AA0CEE50047D8B3 /* TabSelectionView.swift */,
@@ -666,7 +663,6 @@
 				3359E96E2AA4BBCA008A574A /* LoginView.swift in Sources */,
 				334D83FD2A9A588B0001F5B0 /* NanteApp.swift in Sources */,
 				3359E9792AA5AC14008A574A /* ItunesRSSURL.swift in Sources */,
-				334D842A2A9A698E0001F5B0 /* ContentsView.swift in Sources */,
 				A3A1EF682AA312CC0075EAA9 /* CustomTextField.swift in Sources */,
 				3359E95E2AA40714008A574A /* NewSpeechView.swift in Sources */,
 				33CD3CBC2AA3718A00646670 /* NanteAPIData.swift in Sources */,

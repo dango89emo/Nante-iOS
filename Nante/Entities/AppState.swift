@@ -7,7 +7,10 @@
 import SwiftUI
 
 class CurrentState: ObservableObject {
-    @Published var options: AppStates = []
+    @Published var options: AppStates
+    init(){
+        options = [.hasLoggedIn]
+    }
 }
 
 struct AppStates: OptionSet{

@@ -65,10 +65,10 @@ let samplePayload = """
 ]
 """.data(using: .utf8)!
 
-let sampleTranscriptionList = [
-    Transcription(title: "Pacific", content: [sampleSentence]),
-    Transcription(title: "Atlantic", content: [sampleSentence]),
-    Transcription(title: "Indian", content: [sampleSentence]),
-    Transcription(title: "Southern", content: [sampleSentence]),
-    Transcription(title: "Arctic", content: [sampleSentence])
-]
+//let sampleTranscriptionList = [
+//    Transcription(title: "Pacific", content: [sampleSentence]),
+//    Transcription(title: "Atlantic", content: [sampleSentence]),
+//    Transcription(title: "Indian", content: [sampleSentence]),
+//    Transcription(title: "Southern", content: [sampleSentence]),
+//    Transcription(title: "Arctic", content: [sampleSentence])
+//]

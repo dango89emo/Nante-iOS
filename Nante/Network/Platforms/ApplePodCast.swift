@@ -10,7 +10,7 @@ import SwiftSoup
 
 
 struct ApplePodCast: Platform{
-    private (set) var input: URL
+    private (set) var input: URL = URL(string: "text")!
     private (set) var title: String?
     private (set) var resourceURL: URL?
     private (set) var publishDate: Date?
@@ -21,7 +21,8 @@ struct ApplePodCast: Platform{
     mutating func parseInput(input: URL) {
         self.input = input
         
-        if let htmlText = fetchHTML() {
+        if let htmlText = String(data: try! Data(contentsOf: input), encoding: .utf8){
+//        if let htmlText = fetchHTML() {
             if let h1 = extractH1(htmlText){
                 self.title = h1
             }
@@ -30,7 +31,8 @@ struct ApplePodCast: Platform{
         guard let rssURL = itunesRSS.makeURL(input: self.input) else {
             return
         }
-        guard let RSSFeed = fetchRSSFeed(url: rssURL) else{
+        guard let RSSFeed = String(data: try! Data(contentsOf: rssURL), encoding: .utf8) else {
+//        guard let RSSFeed = fetchRSSFeed(url: rssURL) else {
             return
         }
         parseRSSFeed(RSSFeed)
@@ -39,7 +41,7 @@ struct ApplePodCast: Platform{
     private func fetchHTML()-> String?{
         var html_string: String?
         var hasError: Bool = false
-        fetch(url: self.input,httpMethod: .get) { html, error in
+        simple_fetch(url: self.input) { html, error in
         if let e = error {
                 hasError = true
             } else if let h = html {
@@ -65,7 +67,7 @@ struct ApplePodCast: Platform{
     private func fetchRSSFeed(url: URL) -> String? {
         var xml_string: String?
         var hasError: Bool = false
-        fetch(url: url, httpMethod: .post) { xml, error in
+        simple_fetch(url: url) { xml, error in
             if let e = error {
                 hasError = true
             } else if let xml = xml {
@@ -82,33 +84,32 @@ struct ApplePodCast: Platform{
         // sample RSSFeed: https://anchor.fm/s/6c6909bc/podcast/rss
         guard let doc = try? SwiftSoup.parse(rssFeed, "", Parser.xmlParser()) else { return }
         guard let items: Elements = try? doc.getElementsByTag("item") else { return } // 各エピソード
-        guard let h1_title = self.title else { return }
+        guard let h1Title = self.title else { return }
         for item: Element in items.array(){
-            let itemXMLText = try! item.text()
-            let itemXML = try! SwiftSoup.parse(itemXMLText, "", Parser.xmlParser())
-            guard let xmlTitle:String = getXMLElementString(xml: itemXML, tagName: "title") else { return }
-            if (xmlTitle != h1_title){
+            guard let xmlTitle:String = getXMLElementString(xmlElement: item, tagName: "title") else { return }
+            if (!(h1Title.contains(xmlTitle) || xmlTitle.contains(h1Title))){
                 continue
             }
             // url文字列を取得
-            guard let resourceURLString = getXMLAttributeString(xml: itemXML, tagName: "enclosure", attrName: "url") else {return}
+            guard let resourceURLString = getXMLAttributeString(xmlElement: item, tagName: "enclosure", attrName: "url") else {return}
             // URL形式に変換
             guard let url = URL(string: resourceURLString) else { return }
             self.resourceURL = url
             
             // 発行日の文字列を取得
-            guard let publishDateString = getXMLElementString(xml: itemXML, tagName: "pubDate") else { return }
+            guard let publishDateString = getXMLElementString(xmlElement: item, tagName: "pubDate") else { return }
             
             // Date形式に変換
             guard let publishDate = dateFromString(publishDateString) else { return }
             self.publishDate = publishDate
             
             // durationの文字列を取得
-            guard let durationString = getXMLElementString(xml: itemXML, tagName: "duration") else { return }
+            guard let durationString = getXMLElementString(xmlElement: item, tagName: "itunes|duration") else { return }
             
             // TimeIntervalに変換
             guard let duration = timeInterval(from: durationString) else {return}
             self.duration = duration
+            break
         }
 
         // チャンネル名を取得
@@ -125,16 +126,16 @@ struct ApplePodCast: Platform{
         return elementString
     }
     
-    private func getXMLElementString(xml:Document, tagName:String)->String?{
-        guard let element:Element = try? xml.getElementsByTag(tagName).first() else {
+    private func getXMLElementString(xmlElement:Element, tagName:String)->String?{
+        guard let element:Element = try? xmlElement.select(tagName).first() else {
             return nil
         }
         let elementString = try? element.text()
         return elementString
     }
     
-    private func getXMLAttributeString(xml: Document, tagName: String, attrName: String)->String?{
-        guard let element:Element = try? xml.getElementsByTag(tagName).first() else {
+    private func getXMLAttributeString(xmlElement: Element, tagName: String, attrName: String)->String?{
+        guard let element:Element = try? xmlElement.select(tagName).first() else {
             return nil
         }
         let attrString = try? element.attr(attrName)

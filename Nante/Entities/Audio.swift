@@ -34,7 +34,7 @@ class Audio: Identifiable, Equatable, ObservableObject {
     }
 }
 
-class AudioList {
+class AudioList: ObservableObject {
     @Published var items: [Audio]? = nil
     @Published var selectionIndex: Int? = nil
     func insert(_ audio: Audio){

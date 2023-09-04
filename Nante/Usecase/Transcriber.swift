@@ -19,11 +19,8 @@ struct Transcriber{
     var platformAdapter = PlatformAdapter()
     
     mutating func checkPlatform(input: URL) -> Bool{
-        if let host = input.host {
-            return platformAdapter.judge(host: host)
-        } else {
-            return false
-        }
+        let host = input.host! // controllerでhostを持っているかどうかはチェックする。
+        return platformAdapter.judge(host: host)
     }
     
     mutating func makeAudio(input: URL) -> Audio?{

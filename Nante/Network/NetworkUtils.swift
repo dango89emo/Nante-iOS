@@ -48,3 +48,25 @@ func fetch(
         completion(responseString, nil)
     }.resume()
 }
+
+func simple_fetch(url: URL, completion: @escaping (String?, Error?) -> Void) {
+    URLSession.shared.dataTask(with: url) { data, response, error in
+        // エラーチェック
+        if let error = error {
+            completion(nil, error)
+            return
+        }
+        
+        guard let data = data else {
+            completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No data received"]))
+            return
+        }
+        
+        // データをStringに変換
+        if let responseString = String(data: data, encoding: .utf8) {
+            completion(responseString, nil)
+        } else {
+            completion(nil, NSError(domain: "", code: -2, userInfo: [NSLocalizedDescriptionKey: "Failed to decode data"]))
+        }
+    }.resume()
+}

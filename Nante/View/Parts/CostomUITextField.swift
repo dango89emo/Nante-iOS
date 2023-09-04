@@ -7,11 +7,11 @@
 
 import UIKit
 
-class CustomUITextField: UITextField {
-    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-        if action == #selector(paste(_:)) {
-          return true
-        }
-        return false
-    }
-}
+//class CustomUITextField: UITextField {
+//    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+//        if action == #selector(paste(_:)) {
+//          return true
+//        }
+//        return false
+//    }
+//}

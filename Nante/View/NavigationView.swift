@@ -9,18 +9,22 @@ import SwiftUI
 
 struct NavigationView: View {
     @State private var singleSelection = Set<UUID>()
+    @State var selectionIndex: Int? =  nil
     @EnvironmentObject var currentState: CurrentState
-    @EnvironmentObject var transcriptionList: TranscriptionList
+    @EnvironmentObject var audioList: AudioList
     
     var body: some View {
         GeometryReader { geometry in
-            Color("NavigationBackgroundColor")
+            Color("BaseColor")
                 .edgesIgnoringSafeArea(.all)
-            VStack(spacing: 0){
-                Spacer()
-                // Navigation Panel
-                VStack(spacing: 0) {
-                    Button(action: {currentState.options.insert(.isNewSpeech)}) {
+            // Navigation Panel
+            VStack(spacing: 0) {
+                
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        currentState.options.insert(.isNewSpeech)}
+                    ) {
                         HStack {
                             Image("NewSpeech")
                                 .resizable()
@@ -34,7 +38,10 @@ struct NavigationView: View {
                         )
                     }
                     .padding(.top, 40)
-                    
+                    Spacer()
+                }
+
+                if let audioItems = audioList.items {
                     HStack {
                         Text("HISTORY")
                             .foregroundColor(Color("BaseTextColor"))
@@ -45,26 +52,26 @@ struct NavigationView: View {
                         Spacer()
                     }
                     
-                    List (transcriptionList.items, selection: $singleSelection) { transcription in
-                        let index = transcriptionList.items.firstIndex(of:transcription)
+                    .padding(.leading, geometry.size.width * 0.2)
+                    List (audioItems, selection: $singleSelection) { audio in
+                        let index = audioItems.firstIndex(of:audio)
                         let colorName = selectionIndex == index ? "FocusColor" : "BaseColor"
-                        HStack {
-                            Text(transcription.title)
-                                .foregroundColor(Color("BaseTextColor"))
-                                .fontWeight(selectionIndex == index ? .bold: .regular)
-                                .lineLimit(1)
-                                .truncationMode(.tail)
-                            Spacer()
-                            ProgressIcon(progress: transcription.progress, strokeWidth: 6)
-                                .scaleEffect(0.5) // サイズを半分にする
-                                .frame(width: 30, height: 30)
-                        }
-                        .listRowBackground(
-                            Color(colorName)
-                                .frame(height: 30)
-                        )
-                        .onTapGesture {selectionIndex = index}
-                        
+                          HStack {
+                              Text(audio.title)
+                                  .foregroundColor(Color("BaseTextColor"))
+                                  .fontWeight(selectionIndex == index ? .bold: .regular)
+                                  .lineLimit(1)
+                                  .truncationMode(.tail)
+                              Spacer()
+                              ProgressIcon(progress: audio.progress, strokeWidth: 6)
+                                  .scaleEffect(0.5) // サイズを半分にする
+                                  .frame(width: 30, height: 30)
+                          }
+                          .listRowBackground(
+                              Color(colorName)
+                                  .frame(height: 30)
+                          )
+                          .onTapGesture {selectionIndex = index}
                     }
                     // ListStyles
                     .listStyle(PlainListStyle())
@@ -72,11 +79,11 @@ struct NavigationView: View {
                     .padding(.leading, 10)
                     .background(Color.clear)
                     .environment(\.defaultMinListRowHeight, 35)
+                    
+                    Spacer()
                 }
-                // Navigation Panel Style
-                .padding(.horizontal, 20)
-                .background(Color("BaseColor"))
-            } // VStack
+            }
+            .background(Color("BaseColor"))
             .frame(height: geometry.size.height)
         }
     }
@@ -88,6 +95,7 @@ extension UICollectionReusableView {
         set { }
     }
 }
+
 //struct NavigationView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        NavigationView()
