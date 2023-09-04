@@ -32,6 +32,7 @@
 		3359E9792AA5AC14008A574A /* ItunesRSSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9782AA5AC14008A574A /* ItunesRSSURL.swift */; };
 		3359E97B2AA607A7008A574A /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E97A2AA607A7008A574A /* AudioPlayerView.swift */; };
 		3359E97D2AA607B9008A574A /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E97C2AA607B9008A574A /* AudioPlayer.swift */; };
+		3359E97F2AA616A2008A574A /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E97E2AA616A2008A574A /* ProgressBar.swift */; };
 		33CD3CB02AA132B100646670 /* ProgressIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CAF2AA132B100646670 /* ProgressIcon.swift */; };
 		33CD3CB42AA1384100646670 /* Transcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB32AA1384100646670 /* Transcription.swift */; };
 		33CD3CB62AA1659C00646670 /* TranscribeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB52AA1659C00646670 /* TranscribeController.swift */; };
@@ -108,6 +109,7 @@
 		3359E9782AA5AC14008A574A /* ItunesRSSURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSURL.swift; sourceTree = "<group>"; };
 		3359E97A2AA607A7008A574A /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		3359E97C2AA607B9008A574A /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		3359E97E2AA616A2008A574A /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		33CD3CAF2AA132B100646670 /* ProgressIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIcon.swift; sourceTree = "<group>"; };
 		33CD3CB32AA1384100646670 /* Transcription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcription.swift; sourceTree = "<group>"; };
 		33CD3CB52AA1659C00646670 /* TranscribeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeController.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				33CD3CAF2AA132B100646670 /* ProgressIcon.swift */,
 				A3A1EF672AA312CC0075EAA9 /* CustomTextField.swift */,
 				A3A1EF692AA31EC00075EAA9 /* CostomUITextField.swift */,
+				3359E97E2AA616A2008A574A /* ProgressBar.swift */,
 			);
 			path = Parts;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				334D842E2A9A6F540001F5B0 /* MainView.swift in Sources */,
+				3359E97F2AA616A2008A574A /* ProgressBar.swift in Sources */,
 				A3755F9F2AA0CFC40047D8B3 /* SettingsView.swift in Sources */,
 				3359E97D2AA607B9008A574A /* AudioPlayer.swift in Sources */,
 				3359E9662AA4B7D2008A574A /* UserLogin.swift in Sources */,

@@ -14,10 +14,23 @@ struct Word: Decodable {
     let word: String
 }
 
-struct Sentence: Decodable {
+class Sentence: Decodable, Identifiable, Hashable {
+    let id: UUID
     let transcript: String
     let confidence: Double
     let words: [Word]
+    init(transcript: String, confidence: Double, words: [Word]){
+        self.id = UUID()
+        self.transcript = transcript
+        self.confidence = confidence
+        self.words = words
+    }
+    static func == (leftHandSide: Sentence, rightHandSide: Sentence) -> Bool {
+            return leftHandSide.id == rightHandSide.id
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }
 
 struct Transcription {

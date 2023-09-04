@@ -13,8 +13,9 @@ struct NanteApp: App {
     var audioList = AudioList()
 
     var body: some Scene {
+        var audioPlayer = AudioPlayer(audioList: audioList)
         WindowGroup {
-            MainView()
+            MainView(audioPlayer: audioPlayer)
                 .preferredColorScheme(.light)
                 .environmentObject(currentState)
                 .environmentObject(audioList)

@@ -35,7 +35,7 @@ class TranscribeController {
     
     init(){}
     
-    func try_transcribe(text: String) -> Result<Audio, TranscriptionError>{
+    func getAudio(text: String) -> Result<Audio, TranscriptionError>{
         // is valid url?
         guard let url = URL(string: text),
               let scheme = url.scheme,
@@ -50,5 +50,8 @@ class TranscribeController {
             return .failure(.resourceNotFound)
         }
         return .success(audio)
+    }
+    func transcribe(audio: Audio) -> Result<Transcription, TranscriptionError>{
+        return .success(Transcription(content: [sampleSentence]))
     }
 }

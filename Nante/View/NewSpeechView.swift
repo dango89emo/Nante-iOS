@@ -25,7 +25,7 @@ struct NewSpeechView: View {
                         }) {
                             Image(systemName: "chevron.left") // SF Symbols の左向き矢印を利用
                                 .resizable() // 画像のサイズを変更可能にする
-                                .frame(width: 15, height: 15) // 画像のサイズを40x40に設定
+                                .frame(width: 10, height: 15) // 画像のサイズを40x40に設定
                                 .foregroundColor(.black) // またはあなたの望む色に変更
                                 .padding(30)
                         }
@@ -71,12 +71,25 @@ struct NewSpeechView: View {
                     
                     
                     Button("Import") {
-                        let result = transcriptionController.try_transcribe(text: userInput.content)
+                        let result = transcriptionController.getAudio(text: userInput.content)
                         switch result {
                         case .success(let audio):
                             audioList.insert(audio)
+                            audioList.selectionIndex = 0
                             self.currentState.options.insert(.isPlayer)
                             self.currentState.options.remove(.isNewSpeech)
+                            DispatchQueue.global().async { // この部分で非同期処理を開始
+                               let transcriptionRes = transcriptionController.transcribe(audio: audio)
+                               
+                               DispatchQueue.main.async { // 非同期処理の結果をメインスレッドで処理
+                                   switch transcriptionRes {
+                                   case .success(let transcription):
+                                       audioList.insertTranscription(transcription: transcription)
+                                   case .failure(let transcriptionError):
+                                       print(transcriptionError.localizedDescription)
+                                   }
+                               }
+                           }
                         case .failure(let error):
                             self.errorMessage = error.localizedDescription
                         }
