@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct NavigationView: View {
+    private let listPaddingRatio = 0.13
     @State private var singleSelection = Set<UUID>()
-    @State var selectionIndex: Int? =  nil
     @EnvironmentObject var currentState: CurrentState
     @EnvironmentObject var audioList: AudioList
     
@@ -17,7 +17,6 @@ struct NavigationView: View {
         GeometryReader { geometry in
             Color("BaseColor")
                 .edgesIgnoringSafeArea(.all)
-            // Navigation Panel
             VStack(spacing: 0) {
                 
                 HStack{
@@ -32,7 +31,7 @@ struct NavigationView: View {
                             Text("New Speech")
                                 .foregroundColor(Color("BaseTextColor"))
                         }
-                        .frame(width: geometry.size.width * 0.663, height: 40)
+                        .frame(width: geometry.size.width * 0.663, height: 60)
                         .background(
                             Color("FocusColor")
                         )
@@ -51,16 +50,15 @@ struct NavigationView: View {
                             .padding(.bottom, 5)
                         Spacer()
                     }
-                    
-                    .padding(.leading, geometry.size.width * 0.2)
+                    .padding(.leading, geometry.size.width * listPaddingRatio)
                     List (audioItems, selection: $singleSelection) { audio in
                         let index = audioItems.firstIndex(of:audio)
-                        let colorName = selectionIndex == index ? "FocusColor" : "BaseColor"
+                        let colorName = audioList.selectionIndex == index ? "FocusColor" : "BaseColor"
                           HStack {
                               Text(audio.title)
                                   .foregroundColor(Color("BaseTextColor"))
-                                  .fontWeight(selectionIndex == index ? .bold: .regular)
-                                  .lineLimit(1)
+                                  .fontWeight(audioList.selectionIndex == index ? .bold: .regular)
+                                  .lineLimit(2)
                                   .truncationMode(.tail)
                               Spacer()
                               ProgressIcon(progress: audio.progress, strokeWidth: 6)
@@ -71,12 +69,15 @@ struct NavigationView: View {
                               Color(colorName)
                                   .frame(height: 30)
                           )
-                          .onTapGesture {selectionIndex = index}
+                          .onTapGesture {
+                              audioList.selectionIndex = index
+                              currentState.options.insert(.isPlayer)
+                          }
                     }
                     // ListStyles
                     .listStyle(PlainListStyle())
                     .scrollContentBackground(.hidden)
-                    .padding(.leading, 10)
+                    .padding(.leading, geometry.size.width * listPaddingRatio)
                     .background(Color.clear)
                     .environment(\.defaultMinListRowHeight, 35)
                     

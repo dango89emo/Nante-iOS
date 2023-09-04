@@ -9,7 +9,11 @@ import Foundation
 
 
 class ProgressModel: ObservableObject {
-    @Published var value: Float = 0.0
+    @Published var value: Double = 0.0
+    init(_ value: Double){
+        self.value = value
+    }
+    init(){}
 }
 
 // 仮の音源メタデータの構造体
@@ -20,7 +24,7 @@ class Audio: Identifiable, Equatable, ObservableObject {
     let publishDate: Date
     let duration: TimeInterval
     let platformSpecificMetadata: String
-    var transription: Transcription?
+    @Published var transcription: Transcription?
     var progress = ProgressModel()
     init(_ resourceURL: URL, _ title: String, _ publishDate: Date, _ duration: TimeInterval, _ platformSpecificMetadata: String){
         self.resourceURL = resourceURL
@@ -44,6 +48,13 @@ class AudioList: ObservableObject {
         } else {
             // FirstSpeech
             items = [audio]
+        }
+    }
+    func insertTranscription(transcription: Transcription){
+        if let firstAudio = items?.first {
+            firstAudio.transcription = transcription
+            // もし再描画がうまく行かない場合、強制的にitemsを再代入して変更を通知する
+            items = items
         }
     }
 }

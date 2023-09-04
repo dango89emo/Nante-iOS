@@ -7,7 +7,9 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject var audioPlayer: AudioPlayer
     @EnvironmentObject var currentState: CurrentState
+    @EnvironmentObject var audioList: AudioList
 
     var body: some View {
         Group {
@@ -15,6 +17,10 @@ struct MainView: View {
                 LogoView()
             } else if(!currentState.options.contains(.hasLoggedIn)){
                 LoginView()
+            } else if(currentState.options.contains(.isPlayer)){
+                AudioPlayerView(audioPlayer: audioPlayer)
+                    .environmentObject(audioList)
+                    .environmentObject(currentState)
             } else {
                 TabSelectionView()
             }

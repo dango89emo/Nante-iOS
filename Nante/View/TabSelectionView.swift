@@ -9,11 +9,12 @@ import SwiftUI
 
 
 struct TabSelectionView: View {
+    
     init() {
         // タブバーの背景色を設定する
         let appearance = UITabBarAppearance()
         appearance.backgroundColor =  UIColor(Color("BaseColor"))
-        appearance.shadowColor = UIColor(Color("BaseColor"))
+//        appearance.shadowColor = UIColor(Color("BaseColor"))
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
     }
@@ -30,22 +31,20 @@ struct TabSelectionView: View {
                     NewSpeechView()
                         .environmentObject(audioList)
                         .environmentObject(currentState)
-                } else if(currentState.options.contains(.isPlayer)){
-                    AudioPlayerView()
-                        .environmentObject(audioList)
-                        .environmentObject(currentState)
                 }
             }
             .tabItem {Image("BlackAppIcon")}
             
             SearchView()
                 .tabItem {
-                    Image("SearchIcon")
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.black)
                 }
             
             SettingsView()
                 .tabItem {
-                    Image("SearchIcon")
+                    Image(systemName: "person.crop.circle")
+//                        .foregroundColor(Color.black)
                 }
         }
     }
