@@ -19,7 +19,6 @@
 		3359E9572AA3C719008A574A /* PlatformAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9562AA3C719008A574A /* PlatformAdapter.swift */; };
 		3359E95A2AA3D08B008A574A /* ApplePodCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9592AA3D08B008A574A /* ApplePodCast.swift */; };
 		3359E95E2AA40714008A574A /* NewSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E95D2AA40714008A574A /* NewSpeechView.swift */; };
-		3359E9602AA4077C008A574A /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E95F2AA4077C008A574A /* AudioPlayerView.swift */; };
 		3359E9622AA4085C008A574A /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9612AA4085C008A574A /* NavigationView.swift */; };
 		3359E9662AA4B7D2008A574A /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9652AA4B7D2008A574A /* UserLogin.swift */; };
 		3359E9682AA4B7ED008A574A /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9672AA4B7ED008A574A /* Signup.swift */; };
@@ -31,6 +30,8 @@
 		3359E9752AA4C90F008A574A /* ListTranscritptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9742AA4C90F008A574A /* ListTranscritptionController.swift */; };
 		3359E9772AA4CBAF008A574A /* PlatformSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9762AA4CBAF008A574A /* PlatformSelector.swift */; };
 		3359E9792AA5AC14008A574A /* ItunesRSSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9782AA5AC14008A574A /* ItunesRSSURL.swift */; };
+		3359E97B2AA607A7008A574A /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E97A2AA607A7008A574A /* AudioPlayerView.swift */; };
+		3359E97D2AA607B9008A574A /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E97C2AA607B9008A574A /* AudioPlayer.swift */; };
 		33CD3CB02AA132B100646670 /* ProgressIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CAF2AA132B100646670 /* ProgressIcon.swift */; };
 		33CD3CB42AA1384100646670 /* Transcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB32AA1384100646670 /* Transcription.swift */; };
 		33CD3CB62AA1659C00646670 /* TranscribeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB52AA1659C00646670 /* TranscribeController.swift */; };
@@ -94,7 +95,6 @@
 		3359E9562AA3C719008A574A /* PlatformAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformAdapter.swift; sourceTree = "<group>"; };
 		3359E9592AA3D08B008A574A /* ApplePodCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePodCast.swift; sourceTree = "<group>"; };
 		3359E95D2AA40714008A574A /* NewSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSpeechView.swift; sourceTree = "<group>"; };
-		3359E95F2AA4077C008A574A /* AudioPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		3359E9612AA4085C008A574A /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		3359E9652AA4B7D2008A574A /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
 		3359E9672AA4B7ED008A574A /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
@@ -106,6 +106,8 @@
 		3359E9742AA4C90F008A574A /* ListTranscritptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTranscritptionController.swift; sourceTree = "<group>"; };
 		3359E9762AA4CBAF008A574A /* PlatformSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSelector.swift; sourceTree = "<group>"; };
 		3359E9782AA5AC14008A574A /* ItunesRSSURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSURL.swift; sourceTree = "<group>"; };
+		3359E97A2AA607A7008A574A /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
+		3359E97C2AA607B9008A574A /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		33CD3CAF2AA132B100646670 /* ProgressIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIcon.swift; sourceTree = "<group>"; };
 		33CD3CB32AA1384100646670 /* Transcription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcription.swift; sourceTree = "<group>"; };
 		33CD3CB52AA1659C00646670 /* TranscribeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeController.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 		33CD3CB12AA132D000646670 /* Parts */ = {
 			isa = PBXGroup;
 			children = (
+				3359E97C2AA607B9008A574A /* AudioPlayer.swift */,
 				33CD3CAF2AA132B100646670 /* ProgressIcon.swift */,
 				A3A1EF672AA312CC0075EAA9 /* CustomTextField.swift */,
 				A3A1EF692AA31EC00075EAA9 /* CostomUITextField.swift */,
@@ -294,13 +297,13 @@
 			isa = PBXGroup;
 			children = (
 				33CD3CB12AA132D000646670 /* Parts */,
+				3359E97A2AA607A7008A574A /* AudioPlayerView.swift */,
 				334D84272A9A68FF0001F5B0 /* LogoView.swift */,
 				334D842D2A9A6F540001F5B0 /* MainView.swift */,
 				A3755F9A2AA0CEE50047D8B3 /* TabSelectionView.swift */,
 				A3755F9C2AA0CF620047D8B3 /* SearchView.swift */,
 				A3755F9E2AA0CFC40047D8B3 /* SettingsView.swift */,
 				3359E95D2AA40714008A574A /* NewSpeechView.swift */,
-				3359E95F2AA4077C008A574A /* AudioPlayerView.swift */,
 				3359E9612AA4085C008A574A /* NavigationView.swift */,
 				3359E96D2AA4BBCA008A574A /* LoginView.swift */,
 			);
@@ -638,6 +641,7 @@
 			files = (
 				334D842E2A9A6F540001F5B0 /* MainView.swift in Sources */,
 				A3755F9F2AA0CFC40047D8B3 /* SettingsView.swift in Sources */,
+				3359E97D2AA607B9008A574A /* AudioPlayer.swift in Sources */,
 				3359E9662AA4B7D2008A574A /* UserLogin.swift in Sources */,
 				3359E9772AA4CBAF008A574A /* PlatformSelector.swift in Sources */,
 				3359E95A2AA3D08B008A574A /* ApplePodCast.swift in Sources */,
@@ -646,6 +650,7 @@
 				3359E9682AA4B7ED008A574A /* Signup.swift in Sources */,
 				3359E9552AA3C40F008A574A /* Audio.swift in Sources */,
 				3359E9732AA4C4A6008A574A /* SignupController.swift in Sources */,
+				3359E97B2AA607A7008A574A /* AudioPlayerView.swift in Sources */,
 				3359E96A2AA4B834008A574A /* ListTransriptions.swift in Sources */,
 				3359E94D2AA3B8E6008A574A /* NetworkUtils.swift in Sources */,
 				33CD3CB62AA1659C00646670 /* TranscribeController.swift in Sources */,
@@ -656,7 +661,6 @@
 				3359E9572AA3C719008A574A /* PlatformAdapter.swift in Sources */,
 				3359E9622AA4085C008A574A /* NavigationView.swift in Sources */,
 				A3755F9D2AA0CF620047D8B3 /* SearchView.swift in Sources */,
-				3359E9602AA4077C008A574A /* AudioPlayerView.swift in Sources */,
 				33CD3CB42AA1384100646670 /* Transcription.swift in Sources */,
 				334D84282A9A68FF0001F5B0 /* LogoView.swift in Sources */,
 				33CD3CD12AA398E900646670 /* SampleData.swift in Sources */,
