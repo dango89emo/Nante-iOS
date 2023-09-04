@@ -18,13 +18,15 @@ class Audio: Identifiable, Equatable, ObservableObject {
     let title: String
     let resourceURL: URL
     let publishDate: Date
+    let duration: TimeInterval
     let platformSpecificMetadata: String
     var transription: Transcription?
     var progress = ProgressModel()
-    init(_ resourceURL: URL, _ title: String, _ publishDate: Date, _ platformSpecificMetadata: String){
+    init(_ resourceURL: URL, _ title: String, _ publishDate: Date, _ duration: TimeInterval, _ platformSpecificMetadata: String){
         self.resourceURL = resourceURL
         self.title = title
         self.publishDate = publishDate
+        self.duration = duration
         self.platformSpecificMetadata = platformSpecificMetadata
     }
     static func == (leftHandSide: Audio, rightHandSide: Audio) -> Bool {

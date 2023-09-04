@@ -11,6 +11,7 @@ struct AudioSpecifier{
     let resourceURL: URL
     let title: String
     let publishDate: Date
+    let duration: TimeInterval
     let platformSpecificMetadata: String
 }
 
@@ -25,7 +26,7 @@ struct Transcriber{
         }
     }
     
-    func makeAudio(input: URL) -> Audio?{
+    mutating func makeAudio(input: URL) -> Audio?{
         platformAdapter.setInput(input: input)
         guard let audioSpecifier = platformAdapter.makeAudioSpecifier() else{
             return nil
@@ -35,6 +36,7 @@ struct Transcriber{
             audioSpecifier.resourceURL,
             audioSpecifier.title,
             audioSpecifier.publishDate,
+            audioSpecifier.duration,
             audioSpecifier.platformSpecificMetadata
         )
     }

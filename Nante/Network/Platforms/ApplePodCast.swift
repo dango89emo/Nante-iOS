@@ -10,30 +10,34 @@ import SwiftSoup
 
 
 struct ApplePodCast: Platform{
-    private var input: URL
-    private (set) var resourceURL: URL? {
-        self.resourceURL = resourceURL
-    }
+    private (set) var input: URL
     private (set) var title: String?
+    private (set) var resourceURL: URL?
     private (set) var publishDate: Date?
+    private (set) var duration: Double?
     private (set) var platformSpecificMetadata: String?
+    let itunesRSS = ItunesRSSURL()
     
     mutating func parseInput(input: URL) {
         self.input = input
         
-        if let htmlText = _fetchHTML() {
-            title = _extractH1(htmlText)
+        if let htmlText = fetchHTML() {
+            if let h1 = extractH1(htmlText){
+                self.title = h1
+            }
         }
 
-        let rssURL = _makeRSSURL()
-        let RSSText = _fetchRSSFeed(url: rssURL)
-        
-        
-        let podCast = _extractPodCast(RSSText)
+        guard let rssURL = itunesRSS.makeURL(input: self.input) else {
+            return
+        }
+        guard let RSSFeed = fetchRSSFeed(url: rssURL) else{
+            return
+        }
+        parseRSSFeed(RSSFeed)
     }
     
-    func _fetchHTML()-> String?{
-        var html_string: String
+    private func fetchHTML()-> String?{
+        var html_string: String?
         var hasError: Bool = false
         fetch(url: self.input,httpMethod: .get) { html, error in
         if let e = error {
@@ -48,54 +52,110 @@ struct ApplePodCast: Platform{
         return html_string
     }
     
-    func _makeRSSURL()->URL{
-        
-    }
-    
-    func _fetchRSSFeed(url: URL) -> String {
-        fetch(url: url, httpMethod: .post) { (responseString, error) in
-            if let jsonStr = responseString {
-                if let data = jsonStr.data(using: .utf8) {
-                    do {
-                        let decodedObject = try JSONDecoder().decode(YourDecodableStruct.self, from: data)
-                        print(decodedObject)
-                    } catch {
-                        print("Error decoding: \(error)")
-                    }
-                }
-            }
+    private func extractH1(_ htmlText: String)-> String?{
+        do {
+            let doc: Document = try SwiftSoup.parse(htmlText)
+            let h1: Element = try doc.select("h1").first()!
+            let h1_string: String = try h1.text()
+            return h1_string
+        } catch {
+            return nil
         }
     }
-
-
+    private func fetchRSSFeed(url: URL) -> String? {
+        var xml_string: String?
+        var hasError: Bool = false
+        fetch(url: url, httpMethod: .post) { xml, error in
+            if let e = error {
+                hasError = true
+            } else if let xml = xml {
+                xml_string = xml
+            }
+        }
+        if hasError {
+            return nil
+        }
+        return xml_string
+    }
     
+    mutating private func parseRSSFeed(_ rssFeed: String){
+        // sample RSSFeed: https://anchor.fm/s/6c6909bc/podcast/rss
+        guard let doc = try? SwiftSoup.parse(rssFeed, "", Parser.xmlParser()) else { return }
+        guard let items: Elements = try? doc.getElementsByTag("item") else { return } // 各エピソード
+        guard let h1_title = self.title else { return }
+        for item: Element in items.array(){
+            let itemXMLText = try! item.text()
+            let itemXML = try! SwiftSoup.parse(itemXMLText, "", Parser.xmlParser())
+            guard let xmlTitle:String = getXMLElementString(xml: itemXML, tagName: "title") else { return }
+            if (xmlTitle != h1_title){
+                continue
+            }
+            // url文字列を取得
+            guard let resourceURLString = getXMLAttributeString(xml: itemXML, tagName: "enclosure", attrName: "url") else {return}
+            // URL形式に変換
+            guard let url = URL(string: resourceURLString) else { return }
+            self.resourceURL = url
+            
+            // 発行日の文字列を取得
+            guard let publishDateString = getXMLElementString(xml: itemXML, tagName: "pubDate") else { return }
+            
+            // Date形式に変換
+            guard let publishDate = dateFromString(publishDateString) else { return }
+            self.publishDate = publishDate
+            
+            // durationの文字列を取得
+            guard let durationString = getXMLElementString(xml: itemXML, tagName: "duration") else { return }
+            
+            // TimeIntervalに変換
+            guard let duration = timeInterval(from: durationString) else {return}
+            self.duration = duration
+        }
 
-    func _extractH1(_ htmlText: String)-> String{
-        
-    }
-
-    func _extractPodCast(_ RSSText: String, H1: String) ->(String, String, AudioMetadata){
-        
+        // チャンネル名を取得
+        // channelタグの中のtitleダグを参照
+        guard let channnelTitle = getXMLElementStringByCSSSelector(xml: doc, cssSelector: "channel > title") else { return }
+        self.platformSpecificMetadata = channnelTitle
     }
     
-    func getResourceURL() -> URL? {
-        
+    private func getXMLElementStringByCSSSelector(xml:Document, cssSelector:String)->String?{
+        guard let element:Element = try? xml.select(cssSelector).first() else {
+            return nil
+        }
+        let elementString = try? element.text()
+        return elementString
     }
-    func getTitle() -> String?{
-        
+    
+    private func getXMLElementString(xml:Document, tagName:String)->String?{
+        guard let element:Element = try? xml.getElementsByTag(tagName).first() else {
+            return nil
+        }
+        let elementString = try? element.text()
+        return elementString
     }
-    func getPublishDate() -> Date?{
-        
+    
+    private func getXMLAttributeString(xml: Document, tagName: String, attrName: String)->String?{
+        guard let element:Element = try? xml.getElementsByTag(tagName).first() else {
+            return nil
+        }
+        let attrString = try? element.attr(attrName)
+        return attrString
     }
-    func getPlatformSpecificMetadata() -> String?{
-        
-    }
+    
+    private func dateFromString(_ dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss 'GMT'"
 
-    func fetchResourceURL(input: URL) -> URL? {
+        return dateFormatter.date(from: dateString)
+    }
+    private func timeInterval(from timeString: String) -> TimeInterval? {
+        let timeParts = timeString.split(separator: ":").compactMap { Double($0) }
+        guard timeParts.count == 3 else { return nil }
         
+        let hoursToSeconds = timeParts[0] * 3600
+        let minutesToSeconds = timeParts[1] * 60
+        let seconds = timeParts[2]
+        return hoursToSeconds + minutesToSeconds + seconds
     }
 }
-
-
-
-

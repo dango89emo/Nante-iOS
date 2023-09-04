@@ -31,6 +31,7 @@
 		3359E9732AA4C4A6008A574A /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9722AA4C4A6008A574A /* SignupController.swift */; };
 		3359E9752AA4C90F008A574A /* ListTranscritptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9742AA4C90F008A574A /* ListTranscritptionController.swift */; };
 		3359E9772AA4CBAF008A574A /* PlatformSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9762AA4CBAF008A574A /* PlatformSelector.swift */; };
+		3359E9792AA5AC14008A574A /* ItunesRSSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9782AA5AC14008A574A /* ItunesRSSURL.swift */; };
 		33CD3CB02AA132B100646670 /* ProgressIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CAF2AA132B100646670 /* ProgressIcon.swift */; };
 		33CD3CB42AA1384100646670 /* Transcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB32AA1384100646670 /* Transcription.swift */; };
 		33CD3CB62AA1659C00646670 /* TranscribeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB52AA1659C00646670 /* TranscribeController.swift */; };
@@ -106,6 +107,7 @@
 		3359E9722AA4C4A6008A574A /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		3359E9742AA4C90F008A574A /* ListTranscritptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTranscritptionController.swift; sourceTree = "<group>"; };
 		3359E9762AA4CBAF008A574A /* PlatformSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSelector.swift; sourceTree = "<group>"; };
+		3359E9782AA5AC14008A574A /* ItunesRSSURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSURL.swift; sourceTree = "<group>"; };
 		33CD3CAF2AA132B100646670 /* ProgressIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIcon.swift; sourceTree = "<group>"; };
 		33CD3CB32AA1384100646670 /* Transcription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcription.swift; sourceTree = "<group>"; };
 		33CD3CB52AA1659C00646670 /* TranscribeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeController.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				3359E9592AA3D08B008A574A /* ApplePodCast.swift */,
+				3359E9782AA5AC14008A574A /* ItunesRSSURL.swift */,
 			);
 			path = Platforms;
 			sourceTree = "<group>";
@@ -341,7 +344,6 @@
 				C19EB7361239DF02558FE8B6 /* Pods-NanteTests2.debug.xcconfig */,
 				5DDBC2AE954CE0B142719492 /* Pods-NanteTests2.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -663,6 +665,7 @@
 				33CD3CD12AA398E900646670 /* SampleData.swift in Sources */,
 				3359E96E2AA4BBCA008A574A /* LoginView.swift in Sources */,
 				334D83FD2A9A588B0001F5B0 /* NanteApp.swift in Sources */,
+				3359E9792AA5AC14008A574A /* ItunesRSSURL.swift in Sources */,
 				334D842A2A9A698E0001F5B0 /* ContentsView.swift in Sources */,
 				A3A1EF682AA312CC0075EAA9 /* CustomTextField.swift in Sources */,
 				3359E95E2AA40714008A574A /* NewSpeechView.swift in Sources */,
