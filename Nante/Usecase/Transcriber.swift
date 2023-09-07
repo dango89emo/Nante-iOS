@@ -10,9 +10,9 @@ import Foundation
 struct AudioSpecifier{
     let resourceURL: URL
     let title: String
-    let publishDate: Date
+//    let publishDate: Date
     let duration: TimeInterval
-    let platformSpecificMetadata: String
+    let platformSpecificMetadata: String?
 }
 
 struct Transcriber{
@@ -23,18 +23,20 @@ struct Transcriber{
         return platformAdapter.judge(host: host)
     }
     
-    mutating func makeAudio(input: URL) -> Audio?{
+    mutating func makeAudio(input: URL) -> Result<Audio, TranscriptionError>{
         platformAdapter.setInput(input: input)
-        guard let audioSpecifier = platformAdapter.makeAudioSpecifier() else{
-            return nil
+        let res = platformAdapter.makeAudioSpecifier()
+        switch res {
+        case .success(let audioSpecifier):
+            return .success(Audio(
+                audioSpecifier.resourceURL,
+                audioSpecifier.title,
+    //            audioSpecifier.publishDate,
+                audioSpecifier.duration,
+                audioSpecifier.platformSpecificMetadata
+            ))
+        case .failure(let transcriptionError):
+            return .failure(transcriptionError)
         }
-    
-        return Audio(
-            audioSpecifier.resourceURL,
-            audioSpecifier.title,
-            audioSpecifier.publishDate,
-            audioSpecifier.duration,
-            audioSpecifier.platformSpecificMetadata
-        )
     }
 }

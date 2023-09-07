@@ -9,7 +9,7 @@ import SwiftUI
 class CurrentState: ObservableObject {
     @Published var options: AppStates
     init(){
-        options = [.hasLoggedIn]
+        options = []
     }
 }
 

@@ -20,6 +20,7 @@ struct TabSelectionView: View {
     }
     @EnvironmentObject var currentState: CurrentState
     @EnvironmentObject var audioList: AudioList
+    @EnvironmentObject var user: User
     
     var body: some View {
         TabView {
@@ -35,16 +36,11 @@ struct TabSelectionView: View {
             }
             .tabItem {Image("BlackAppIcon")}
             
-            SearchView()
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.black)
-                }
-            
             SettingsView()
+                .environmentObject(user)
+                .environmentObject(currentState)
                 .tabItem {
                     Image(systemName: "person.crop.circle")
-//                        .foregroundColor(Color.black)
                 }
         }
     }

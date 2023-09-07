@@ -65,10 +65,7 @@ struct NavigationView: View {
                                   .scaleEffect(0.5) // サイズを半分にする
                                   .frame(width: 30, height: 30)
                           }
-                          .listRowBackground(
-                              Color(colorName)
-                                  .frame(height: 30)
-                          )
+                          .listRowBackground(Color(colorName))
                           .onTapGesture {
                               audioList.selectionIndex = index
                               currentState.options.insert(.isPlayer)
@@ -77,7 +74,7 @@ struct NavigationView: View {
                     // ListStyles
                     .listStyle(PlainListStyle())
                     .scrollContentBackground(.hidden)
-                    .padding(.leading, geometry.size.width * listPaddingRatio)
+                    .padding(.horizontal, geometry.size.width * listPaddingRatio)
                     .background(Color.clear)
                     .environment(\.defaultMinListRowHeight, 35)
                     

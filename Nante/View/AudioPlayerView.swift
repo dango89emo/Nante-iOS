@@ -7,27 +7,24 @@
 
 import SwiftUI
 import AVFoundation
+import Combine
 
 struct AudioPlayerView: View {
     let imageHeight = 25.0
     let imageWidth = 23.0
     
-//    @ObservedObject var progress: ProgressModel
-    @ObservedObject var audioPlayer: AudioPlayer
+    @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var currentState: CurrentState
     @EnvironmentObject var audioList: AudioList
-    @State private var singleSelection = Set<UUID>()
-    
-    init(audioPlayer: AudioPlayer){
-        self.audioPlayer = audioPlayer
-    }
+    @State var progress = ProgressModel()
+    @State private var lastIndex: Int?
+    @State private var lastItemCount: Int?
     
     var body: some View {
-        Color("BaseColor")
         GeometryReader { geometry in
             ZStack{
                 VStack{
-                    // 戻るボタン
+                    // Header
                     HStack {
                         Button(action: {
                             currentState.options.remove(.isPlayer)
@@ -42,83 +39,100 @@ struct AudioPlayerView: View {
                             Text(items[index].title)
                                 .lineLimit(2)
                                 .truncationMode(.tail)
+                                .padding(.trailing, 30)
                         }
                         Spacer()
                     }
-                    if let items = audioList.items, let index = audioList.selectionIndex, let transcription = items[index].transcription {
-                        let sentences = transcription.content
-                        ScrollView {
-                            VStack {
-                                ForEach(sentences, id: \.self) { sentence in
-                                    Text(sentence.transcript)
-                                        .padding()
-                                }
-                            }
-                        }
+                    
+                    // Content
+                    if let items = audioList.items,
+                       let index = audioList.selectionIndex,
+                       let transcription = items[index].transcription {
+                        TranscriptionView(transcription: transcription, duration: items[index].duration)
+                            .environmentObject(items[index].progress)
+                            .environmentObject(audioPlayer)
                     } else {
                         Spacer()
                         VStack{
                             ProgressView()
                                 .scaleEffect(3.0)
                             Text("AIが文字起こしをしています。しばらくお待ちください。")
-                                .frame(width: geometry.size.width*0.8)
-                                .offset(y: 50)
+                                .frame(width: geometry.size.width * 0.8)
                                 .foregroundColor(.gray)
-                        }.offset(y: 70)
-                    }
-                    Spacer()
-                }
-                .frame(height: geometry.size.height)
-                .offset(y: -1 * geometry.size.height) // なぜか高さが画面の半分として計算されているので、これがないと真ん中に表示される。
-        
-                
-//                .frame(width: geometry.size.width, height: geometry.size.height)
-//                .offset(y: -1 * geometry.size.height)
-//
-                
-                // Audio Player
-                VStack {
-                    Spacer()
-                    if let items = audioList.items, let index = audioList.selectionIndex{
-                        @ObservedObject var progress = items[index].progress
-                        ProgressBar(progress: progress)
-                    }
-                    HStack {
-                        Button(action: {
-                            audioPlayer.rewind(by: 10.0)
-                        }) {
-                            Image(systemName: "gobackward.10")
-                                .resizable()
-                                .frame(width: imageWidth, height: imageHeight)
+                                .offset(y: 50)
                         }
-                        .padding()
-                        
-                        Button(action: {
-                            if audioPlayer.isPlaying {
-                                audioPlayer.pause()
-                            } else {
-                                audioPlayer.play()
+                        Spacer()
+                    }
+                    Spacer()
+                    
+                    // Footer
+                    VStack {
+                        VStack{
+                          
+                            ProgressBar(progress: self.progress)
+                            HStack {
+                                ProgressGauge(progress: self.progress).foregroundColor(.clear)
+                                Button(action: {
+                                    audioPlayer.rewind(by: 10.0)
+                                }) {
+                                    Image(systemName: "gobackward.10")
+                                        .resizable()
+                                        .frame(width: imageWidth, height: imageHeight)
+                                }
+                                .padding()
+                                
+                                Button(action: {
+                                    if audioPlayer.isPlaying {
+                                        audioPlayer.pause()
+                                    } else {
+                                        audioPlayer.play()
+                                    }
+                                }) {
+                                    Image(systemName: audioPlayer.isPlaying ? "pause.fill" : "play.fill")
+                                        .resizable()
+                                        .frame(width: imageWidth, height: imageHeight)
+                                }
+                                .padding()
+                                
+                                Button(action: {
+                                    audioPlayer.forward(by: 10.0)
+                                }) {
+                                    Image(systemName: "goforward.10")
+                                        .resizable()
+                                        .frame(width: imageWidth, height: imageHeight)
+                                }
+                                .padding()
+                                ProgressGauge(progress: self.progress)
                             }
-                        }) {
-                            Image(systemName: audioPlayer.isPlaying ? "pause.fill" : "play.fill")
-                                .resizable()
-                                .frame(width: imageWidth, height: imageHeight)
+                            .frame(width: geometry.size.width)
                         }
-                        .padding()
-                        
-                        Button(action: {
-                            audioPlayer.forward(by: 10.0)
-                        }) {
-                            Image(systemName: "goforward.10")
-                                .resizable()
-                                .frame(width: imageWidth, height: imageHeight)
-                        }
-                        .padding()
+                        .background(Color.white)
+                        .onReceive(
+                            audioList.$selectionIndex,
+                            perform: { newIndex in
+                                // 新しい状態にて、選択状態がなかったり、一つもaudioがないなら、何もしない。
+                                guard let newIndex = newIndex, let items = audioList.items else {
+                                    self.progress = ProgressModel()
+                                    return
+                                }
+                                // 以前に再生したものがある場合
+                                if let unwrappedLastIndex = lastIndex,
+                                   let unwrappedLastItemCount = lastItemCount
+                                {//変化があった場合のみ
+                                    if newIndex != unwrappedLastIndex || unwrappedLastItemCount != items.count{
+                                        self.progress = items[newIndex].progress
+                                    }
+                                // 変化がなかった場合何もしない
+                                // 初めての再生の場合
+                                }else{
+                                    self.progress = items[newIndex].progress
+                                }
+                                self.lastIndex = newIndex
+                                self.lastItemCount = items.count
+                        }) // perform
                     }
-                    .frame(width: geometry.size.width)
                 }
             }
         }
     }
 }
-

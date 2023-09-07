@@ -13,6 +13,7 @@ struct SearchView: View {
         ZStack {
             Color("BaseColor")
                 .edgesIgnoringSafeArea(.all)
+            Text("Under Construction")
         }
     }
 }

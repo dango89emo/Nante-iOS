@@ -10,7 +10,7 @@ import Foundation
 protocol Platform{
     var resourceURL: URL? {get}
     var title: String? {get}
-    var publishDate: Date? {get}
+//    var publishDate: Date? {get}
     var duration: TimeInterval? {get}
     var platformSpecificMetadata: String? {get}
     mutating func parseInput(input: URL)
@@ -36,26 +36,25 @@ struct PlatformAdapter{
         self.platform?.parseInput(input: input)
     }
     
-    func makeAudioSpecifier() -> AudioSpecifier?{
+    func makeAudioSpecifier() -> Result<AudioSpecifier, TranscriptionError>{
         guard let resourceURL = self.platform?.resourceURL else {
-            return nil
+            return .failure(.resourceNotFound)
         }
         guard let title = self.platform?.title else {
-            return nil
+            return .failure(.titleNotFoundError)
         }
-        guard let publishDate = self.platform?.publishDate else {
-            return nil
-        }
+//        guard let publishDate = self.platform?.publishDate else {
+//            return nil
+//        }
+        let duration = self.platform?.duration
         guard let duration = self.platform?.duration else {
-            return nil
+            return .failure(.durationConversionError)
         }
-        guard let platformSpecificMetadata = self.platform?.platformSpecificMetadata else {
-            return nil
-        }
+        let platformSpecificMetadata = self.platform?.platformSpecificMetadata
         
-        return AudioSpecifier(
-            resourceURL: resourceURL, title: title, publishDate: publishDate, duration: duration, platformSpecificMetadata: platformSpecificMetadata
-        )
+        return .success(AudioSpecifier(
+            resourceURL: resourceURL, title: title, /*publishDate: publishDate,*/ duration: duration, platformSpecificMetadata: platformSpecificMetadata
+        ))
     }
 }
 

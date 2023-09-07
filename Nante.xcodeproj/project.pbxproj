@@ -21,18 +21,16 @@
 		3359E95E2AA40714008A574A /* NewSpeechView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E95D2AA40714008A574A /* NewSpeechView.swift */; };
 		3359E9622AA4085C008A574A /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9612AA4085C008A574A /* NavigationView.swift */; };
 		3359E9662AA4B7D2008A574A /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9652AA4B7D2008A574A /* UserLogin.swift */; };
-		3359E9682AA4B7ED008A574A /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9672AA4B7ED008A574A /* Signup.swift */; };
-		3359E96A2AA4B834008A574A /* ListTransriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9692AA4B834008A574A /* ListTransriptions.swift */; };
-		3359E96C2AA4B902008A574A /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E96B2AA4B902008A574A /* APITests.swift */; };
 		3359E96E2AA4BBCA008A574A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E96D2AA4BBCA008A574A /* LoginView.swift */; };
-		3359E9712AA4C491008A574A /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9702AA4C491008A574A /* LoginController.swift */; };
-		3359E9732AA4C4A6008A574A /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9722AA4C4A6008A574A /* SignupController.swift */; };
-		3359E9752AA4C90F008A574A /* ListTranscritptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9742AA4C90F008A574A /* ListTranscritptionController.swift */; };
 		3359E9772AA4CBAF008A574A /* PlatformSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9762AA4CBAF008A574A /* PlatformSelector.swift */; };
 		3359E9792AA5AC14008A574A /* ItunesRSSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9782AA5AC14008A574A /* ItunesRSSURL.swift */; };
 		3359E97B2AA607A7008A574A /* AudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E97A2AA607A7008A574A /* AudioPlayerView.swift */; };
 		3359E97D2AA607B9008A574A /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E97C2AA607B9008A574A /* AudioPlayer.swift */; };
 		3359E97F2AA616A2008A574A /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E97E2AA616A2008A574A /* ProgressBar.swift */; };
+		3359E9812AA711A9008A574A /* sampleTranscription.json in Resources */ = {isa = PBXBuildFile; fileRef = 3359E9802AA711A9008A574A /* sampleTranscription.json */; };
+		3359E9832AA8E8F9008A574A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9822AA8E8F9008A574A /* User.swift */; };
+		3359E9852AA8ECF2008A574A /* LoginInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9842AA8ECF2008A574A /* LoginInput.swift */; };
+		3359E9872AA92711008A574A /* TranscriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3359E9862AA92711008A574A /* TranscriptionView.swift */; };
 		33CD3CB02AA132B100646670 /* ProgressIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CAF2AA132B100646670 /* ProgressIcon.swift */; };
 		33CD3CB42AA1384100646670 /* Transcription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB32AA1384100646670 /* Transcription.swift */; };
 		33CD3CB62AA1659C00646670 /* TranscribeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD3CB52AA1659C00646670 /* TranscribeController.swift */; };
@@ -98,18 +96,16 @@
 		3359E95D2AA40714008A574A /* NewSpeechView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSpeechView.swift; sourceTree = "<group>"; };
 		3359E9612AA4085C008A574A /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		3359E9652AA4B7D2008A574A /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
-		3359E9672AA4B7ED008A574A /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
-		3359E9692AA4B834008A574A /* ListTransriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTransriptions.swift; sourceTree = "<group>"; };
-		3359E96B2AA4B902008A574A /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		3359E96D2AA4BBCA008A574A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		3359E9702AA4C491008A574A /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		3359E9722AA4C4A6008A574A /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
-		3359E9742AA4C90F008A574A /* ListTranscritptionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTranscritptionController.swift; sourceTree = "<group>"; };
 		3359E9762AA4CBAF008A574A /* PlatformSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformSelector.swift; sourceTree = "<group>"; };
 		3359E9782AA5AC14008A574A /* ItunesRSSURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesRSSURL.swift; sourceTree = "<group>"; };
 		3359E97A2AA607A7008A574A /* AudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerView.swift; sourceTree = "<group>"; };
 		3359E97C2AA607B9008A574A /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		3359E97E2AA616A2008A574A /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		3359E9802AA711A9008A574A /* sampleTranscription.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sampleTranscription.json; sourceTree = "<group>"; };
+		3359E9822AA8E8F9008A574A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3359E9842AA8ECF2008A574A /* LoginInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInput.swift; sourceTree = "<group>"; };
+		3359E9862AA92711008A574A /* TranscriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptionView.swift; sourceTree = "<group>"; };
 		33CD3CAF2AA132B100646670 /* ProgressIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIcon.swift; sourceTree = "<group>"; };
 		33CD3CB32AA1384100646670 /* Transcription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transcription.swift; sourceTree = "<group>"; };
 		33CD3CB52AA1659C00646670 /* TranscribeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeController.swift; sourceTree = "<group>"; };
@@ -221,7 +217,6 @@
 			isa = PBXGroup;
 			children = (
 				33CD3CCB2AA3969300646670 /* TranscriptTest.swift */,
-				3359E96B2AA4B902008A574A /* APITests.swift */,
 			);
 			path = NanteTests;
 			sourceTree = "<group>";
@@ -231,8 +226,6 @@
 			children = (
 				3359E9512AA3C35C008A574A /* Transcriber.swift */,
 				3359E9652AA4B7D2008A574A /* UserLogin.swift */,
-				3359E9672AA4B7ED008A574A /* Signup.swift */,
-				3359E9692AA4B834008A574A /* ListTransriptions.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -268,7 +261,6 @@
 		33CD3CB12AA132D000646670 /* Parts */ = {
 			isa = PBXGroup;
 			children = (
-				3359E97C2AA607B9008A574A /* AudioPlayer.swift */,
 				33CD3CAF2AA132B100646670 /* ProgressIcon.swift */,
 				A3A1EF672AA312CC0075EAA9 /* CustomTextField.swift */,
 				A3A1EF692AA31EC00075EAA9 /* CostomUITextField.swift */,
@@ -280,10 +272,12 @@
 		33CD3CB22AA1380200646670 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				3359E9802AA711A9008A574A /* sampleTranscription.json */,
 				334D842B2A9A6E870001F5B0 /* AppState.swift */,
 				33CD3CB32AA1384100646670 /* Transcription.swift */,
 				33CD3CD02AA398E900646670 /* SampleData.swift */,
 				3359E9542AA3C40F008A574A /* Audio.swift */,
+				3359E9822AA8E8F9008A574A /* User.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -309,6 +303,7 @@
 				3359E95D2AA40714008A574A /* NewSpeechView.swift */,
 				3359E9612AA4085C008A574A /* NavigationView.swift */,
 				3359E96D2AA4BBCA008A574A /* LoginView.swift */,
+				3359E9862AA92711008A574A /* TranscriptionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -316,10 +311,9 @@
 		A3755F992AA0C0640047D8B3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3359E97C2AA607B9008A574A /* AudioPlayer.swift */,
 				33CD3CB52AA1659C00646670 /* TranscribeController.swift */,
-				3359E9702AA4C491008A574A /* LoginController.swift */,
-				3359E9722AA4C4A6008A574A /* SignupController.swift */,
-				3359E9742AA4C90F008A574A /* ListTranscritptionController.swift */,
+				3359E9842AA8ECF2008A574A /* LoginInput.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -484,6 +478,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3359E9812AA711A9008A574A /* sampleTranscription.json in Resources */,
 				334D84052A9A588C0001F5B0 /* Preview Assets.xcassets in Resources */,
 				334D84012A9A588C0001F5B0 /* Assets.xcassets in Resources */,
 			);
@@ -644,6 +639,8 @@
 			files = (
 				334D842E2A9A6F540001F5B0 /* MainView.swift in Sources */,
 				3359E97F2AA616A2008A574A /* ProgressBar.swift in Sources */,
+				3359E9852AA8ECF2008A574A /* LoginInput.swift in Sources */,
+				3359E9832AA8E8F9008A574A /* User.swift in Sources */,
 				A3755F9F2AA0CFC40047D8B3 /* SettingsView.swift in Sources */,
 				3359E97D2AA607B9008A574A /* AudioPlayer.swift in Sources */,
 				3359E9662AA4B7D2008A574A /* UserLogin.swift in Sources */,
@@ -651,20 +648,17 @@
 				3359E95A2AA3D08B008A574A /* ApplePodCast.swift in Sources */,
 				334D842C2A9A6E870001F5B0 /* AppState.swift in Sources */,
 				A3A1EF6A2AA31EC00075EAA9 /* CostomUITextField.swift in Sources */,
-				3359E9682AA4B7ED008A574A /* Signup.swift in Sources */,
 				3359E9552AA3C40F008A574A /* Audio.swift in Sources */,
-				3359E9732AA4C4A6008A574A /* SignupController.swift in Sources */,
 				3359E97B2AA607A7008A574A /* AudioPlayerView.swift in Sources */,
-				3359E96A2AA4B834008A574A /* ListTransriptions.swift in Sources */,
 				3359E94D2AA3B8E6008A574A /* NetworkUtils.swift in Sources */,
 				33CD3CB62AA1659C00646670 /* TranscribeController.swift in Sources */,
 				33CD3CB02AA132B100646670 /* ProgressIcon.swift in Sources */,
 				3359E9522AA3C35C008A574A /* Transcriber.swift in Sources */,
-				3359E9712AA4C491008A574A /* LoginController.swift in Sources */,
 				A3755F9B2AA0CEE50047D8B3 /* TabSelectionView.swift in Sources */,
 				3359E9572AA3C719008A574A /* PlatformAdapter.swift in Sources */,
 				3359E9622AA4085C008A574A /* NavigationView.swift in Sources */,
 				A3755F9D2AA0CF620047D8B3 /* SearchView.swift in Sources */,
+				3359E9872AA92711008A574A /* TranscriptionView.swift in Sources */,
 				33CD3CB42AA1384100646670 /* Transcription.swift in Sources */,
 				334D84282A9A68FF0001F5B0 /* LogoView.swift in Sources */,
 				33CD3CD12AA398E900646670 /* SampleData.swift in Sources */,
@@ -674,7 +668,6 @@
 				A3A1EF682AA312CC0075EAA9 /* CustomTextField.swift in Sources */,
 				3359E95E2AA40714008A574A /* NewSpeechView.swift in Sources */,
 				33CD3CBC2AA3718A00646670 /* NanteAPIData.swift in Sources */,
-				3359E9752AA4C90F008A574A /* ListTranscritptionController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,7 +676,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				33CD3CE22AA3A02300646670 /* TranscriptTest.swift in Sources */,
-				3359E96C2AA4B902008A574A /* APITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
