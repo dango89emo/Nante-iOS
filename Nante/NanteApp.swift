@@ -11,14 +11,16 @@ import SwiftUI
 struct NanteApp: App {
     var currentState = CurrentState()
     var audioList = AudioList()
+    var user = User()
 
     var body: some Scene {
-        var audioPlayer = AudioPlayer(audioList: audioList)
+        let audioPlayer = AudioPlayer(audioList: audioList)
         WindowGroup {
             MainView(audioPlayer: audioPlayer)
                 .preferredColorScheme(.light)
                 .environmentObject(currentState)
                 .environmentObject(audioList)
+                .environmentObject(user)
                 .environment(\.colorScheme, .light)
                 .environment(\.font, Font.custom("HelveticaNeue", size: 16))
         }

@@ -11,8 +11,11 @@ enum TranscriptionError: Error, LocalizedError{
     case invalidURL
     case notImplementedPlatform
     case resourceNotFound
-//    case apiError
-//    case unknownError
+    case durationConversionError
+    case fileNotFound
+    case jsonDecodeError
+    case titleNotFoundError
+    
     var errorDescription: String? {
         switch self {
         case .invalidURL:
@@ -20,9 +23,16 @@ enum TranscriptionError: Error, LocalizedError{
         case .notImplementedPlatform:
             return "入力されたプラットフォームには現在対応していません。"
         case .resourceNotFound:
-            return "データ取得の最中にエラーが起きました。"
+            return "データ解析に失敗しました(Error000)"
+        case .fileNotFound:
+            return "内部保存データの読み込みに失敗しました"
+        case .jsonDecodeError:
+            return "Jsonファイルの変換に失敗しました。"
+        case .titleNotFoundError:
+            return "データ解析に失敗しました(Error001)"
+        case .durationConversionError:
+            return "データ解析に失敗しました(Error002)"
         }
-        
     }
 }
 
@@ -46,12 +56,31 @@ class TranscribeController {
         if (!transcriber.checkPlatform(input: url)) {
             return .failure(.notImplementedPlatform)
         }
-        guard let audio = transcriber.makeAudio(input: url) else {
-            return .failure(.resourceNotFound)
+        
+        let res = transcriber.makeAudio(input: url)
+        switch res{
+        case .success(let audio):
+            return .success(audio)
+        case .failure(let error):
+            return .failure(error)
         }
-        return .success(audio)
     }
     func transcribe(audio: Audio) -> Result<Transcription, TranscriptionError>{
-        return .success(Transcription(content: [sampleSentence]))
+        
+//        sleep(5)
+        
+        let decoder = JSONDecoder()
+        guard let url = Bundle.main.url(forResource: "sampleTranscription", withExtension: "json") else {
+            return .failure(.fileNotFound)
+        }
+         
+        guard let data = try? Data(contentsOf: url) else {
+            return .failure(.fileNotFound)
+        }
+        
+        guard let sentences = try? decoder.decode([Sentence].self, from: data) else {
+            return .failure(.jsonDecodeError)
+        }
+        return .success(Transcription(content: sentences))
     }
 }

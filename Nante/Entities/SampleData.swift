@@ -12,23 +12,23 @@ let sampleSentence = Sentence(
     confidence: 0.98,
     words: [
         Word(
-            startTime: "1.300s",
-            endTime: "1.400s",
+            startTime: 1.300,
+            endTime: 1.400,
             word: "Four"
         ),
         Word(
-            startTime: "1.400s",
-            endTime: "1.600s",
+            startTime: 1.400,
+            endTime: 1.600,
             word: "score"
         ),
         Word(
-            startTime: "1.600s",
-            endTime: "1.600s",
+            startTime: 1.600,
+            endTime: 1.600,
             word: "and"
         ),
         Word(
-            startTime: "1.600s",
-            endTime: "1.900s",
+            startTime: 1.600,
+            endTime:1.900,
             word: "twenty"
         )
     ]

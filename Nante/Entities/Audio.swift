@@ -21,17 +21,20 @@ class Audio: Identifiable, Equatable, ObservableObject {
     let id = UUID()
     let title: String
     let resourceURL: URL
-    let publishDate: Date
+//    let publishDate: Date
     let duration: TimeInterval
-    let platformSpecificMetadata: String
+    let platformSpecificMetadata: String?
     @Published var transcription: Transcription?
-    var progress = ProgressModel()
-    init(_ resourceURL: URL, _ title: String, _ publishDate: Date, _ duration: TimeInterval, _ platformSpecificMetadata: String){
+    @Published var progress = ProgressModel()
+    init(_ resourceURL: URL, _ title: String, /*_ publishDate: Date,*/ _ duration: TimeInterval, _ platformSpecificMetadata: String?){
         self.resourceURL = resourceURL
         self.title = title
-        self.publishDate = publishDate
+//        self.publishDate = publishDate
         self.duration = duration
         self.platformSpecificMetadata = platformSpecificMetadata
+        let _ = self.$progress.sink { [weak self] _ in
+            self?.objectWillChange.send()
+        }
     }
     static func == (leftHandSide: Audio, rightHandSide: Audio) -> Bool {
             return leftHandSide.id == rightHandSide.id
@@ -45,9 +48,11 @@ class AudioList: ObservableObject {
         if var unwrappedItems = items {
             unwrappedItems.insert(audio, at:0)
             items = unwrappedItems
+            selectionIndex = 0
         } else {
             // FirstSpeech
             items = [audio]
+            selectionIndex = 0
         }
     }
     func insertTranscription(transcription: Transcription){
