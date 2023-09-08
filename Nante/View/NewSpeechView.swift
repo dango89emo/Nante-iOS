@@ -78,18 +78,15 @@ struct NewSpeechView: View {
                             audioList.selectionIndex = 0
                             self.currentState.options.insert(.isPlayer)
                             self.currentState.options.remove(.isNewSpeech)
-                            DispatchQueue.global().async { // この部分で非同期処理を開始
-                               let transcriptionRes = transcriptionController.transcribe(audio: audio)
-                               
-                               DispatchQueue.main.async { // 非同期処理の結果をメインスレッドで処理
-                                   switch transcriptionRes {
-                                   case .success(let transcription):
-                                       audioList.insertTranscription(transcription: transcription)
-                                   case .failure(let transcriptionError):
-                                       print(transcriptionError.localizedDescription)
-                                   }
-                               }
-                           }
+                            Task {
+                                let transcriptionRes = await transcriptionController.transcribe(audio: audio)
+                                switch transcriptionRes {
+                                case .success(let transcription):
+                                    audioList.insertTranscription(transcription: transcription)
+                                case .failure(let transcriptionError):
+                                    self.errorMessage = transcriptionError.localizedDescription
+                                }
+                            }
                         case .failure(let error):
                             self.errorMessage = error.localizedDescription
                         }

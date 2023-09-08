@@ -15,6 +15,8 @@ enum TranscriptionError: Error, LocalizedError{
     case fileNotFound
     case jsonDecodeError
     case titleNotFoundError
+    case nanteAPIError
+    case unknownError
     
     var errorDescription: String? {
         switch self {
@@ -32,6 +34,10 @@ enum TranscriptionError: Error, LocalizedError{
             return "データ解析に失敗しました(Error001)"
         case .durationConversionError:
             return "データ解析に失敗しました(Error002)"
+        case .nanteAPIError:
+            return "サーバーとの通信で問題が生じました"
+        case .unknownError:
+            return "不明なエラーが生じました"
         }
     }
 }
@@ -65,22 +71,28 @@ class TranscribeController {
             return .failure(error)
         }
     }
-    func transcribe(audio: Audio) -> Result<Transcription, TranscriptionError>{
-        
-//        sleep(5)
-        
+    func transcribe(audio: Audio) async -> Result<Transcription, TranscriptionError>{
         let decoder = JSONDecoder()
-        guard let url = Bundle.main.url(forResource: "sampleTranscription", withExtension: "json") else {
-            return .failure(.fileNotFound)
-        }
-         
-        guard let data = try? Data(contentsOf: url) else {
-            return .failure(.fileNotFound)
+        
+        let handle = Task {
+            let result = await fetch(url: nanteAPIData.domain, httpMethod: .get)
+            return result
         }
         
-        guard let sentences = try? decoder.decode([Sentence].self, from: data) else {
-            return .failure(.jsonDecodeError)
+        let result = await handle.value
+        switch result{
+        case .success(let res):
+            guard let transcription = try? decoder.decode(Transcription.self, from: res) else {
+                return .failure(.jsonDecodeError)
+            }
+            return .success(transcription)
+            
+        case .failure(let error):
+            if error == .noDataReceived{
+                return .failure(.nanteAPIError)
+            }else{
+                return .failure(.nanteAPIError)
+            }
         }
-        return .success(Transcription(content: sentences))
     }
 }
