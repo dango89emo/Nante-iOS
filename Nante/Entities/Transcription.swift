@@ -62,6 +62,6 @@ class Sentence: Decodable, Identifiable, Hashable {
     }
 }
 
-struct Transcription {
+struct Transcription: Decodable{
     let content : [Sentence]
 }
